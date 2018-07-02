@@ -1,0 +1,142 @@
+{include file="public/header" title="竞猜胜负"  body=""/}
+
+<!--<div class="logo-wrap-bg">-->
+    <!--<a class="login-logo-wrap" href="#">-->
+        <!--&lt;!&ndash;<img src="__STATIC__//template/mobile/static/images/logo-login.png" alt="LOGO"/>&ndash;&gt;-->
+    <!--</a>-->
+<!--</div>-->
+
+<div class="jcbox">
+    <div class="jcbox_banner">
+        <img src="/template/mobile/static/images/jc_01.jpg" alt="竞猜活动">
+    </div>
+    <div class="jcbox_content">
+        <ul class="jcbox_content_ul">
+            <li class="indexbox_ul_li on1">
+                <a class="indexbox_ul_li_a" href="/mobile{$navigation[0]['url']}">{$navigation[0]['name']}</a>
+            </li>
+            <li class="indexbox_ul_li on2">
+                <a class="indexbox_ul_li_a" href="/mobile{$navigation[1]['url']}">{$navigation[1]['name']}</a>
+            </li>
+            <li class="indexbox_ul_li on3">
+                <a class="indexbox_ul_li_a" href="/mobile{$navigation[2]['url']}">{$navigation[2]['name']}</a>
+            </li>
+        </ul>
+        <div class="jcbox_content_xian">
+            <img src="/template/mobile/static/images/cgj_01.png" alt="">
+        </div>
+        <h2 class="jcbox_content_h2">猜世界杯冠军<br>赢爱车一夏清凉</h2>
+        <div class="cgj_box">
+            <ul class="cgj_box_ul">
+                {volist name="activity_settings_champion" id="vo"}
+                <li class="cgj_box_ul_li">
+                    <div class="cgj_box_ul_li_div">{$vo.title}</div>
+                    <ul class="cgj_box_ul_li_ul">
+					{if condition="$vo.status1 eq '1'"}
+                        <li class="cgj_box_ul_li_ul_li fl" onclick="resetCs('{$vo.name1}',{$vo.activity_team1_id});">
+                            <div class="cgj_box_ul_li_ul_li_div">
+                                <img src="{$vo.activity_team_image1}" alt="">
+                            </div>
+                            <h2  class="cgj_box_ul_li_ul_li_h2">{$vo.name1}</h2>
+                        </li>
+						{/if}
+								{if condition="$vo.status2 eq '1'"}
+                        <li class="cgj_box_ul_li_ul_li fl" onclick="resetCs('{$vo.name2}',{$vo.activity_team2_id});">
+                            <div class="cgj_box_ul_li_ul_li_div">
+                                <img src="{$vo.activity_team_image2}" alt="">
+                            </div>
+                            <h2 class="cgj_box_ul_li_ul_li_h2 ">{$vo.name2}</h2>
+                        </li>
+						{/if}
+								{if condition="$vo.status3 eq '1'"}
+                        <li class="cgj_box_ul_li_ul_li fl" onclick="resetCs('{$vo.name3}',{$vo.activity_team3_id});">
+                            <div class="cgj_box_ul_li_ul_li_div">
+                                <img src="{$vo.activity_team_image3}" alt="">
+                            </div>
+                            <h2 class="cgj_box_ul_li_ul_li_h2">{$vo.name3}</h2>
+                        </li>
+						{/if}
+								{if condition="$vo.status4 eq '1'"}
+                        <li class="cgj_box_ul_li_ul_li fl" onclick="resetCs('{$vo.name4}',{$vo.activity_team4_id});">
+                            <div class="cgj_box_ul_li_ul_li_div">
+                                <img src="{$vo.activity_team_image4}" alt="">
+                            </div>
+                            <h2 class="cgj_box_ul_li_ul_li_h2">{$vo.name4}</h2>
+                        </li>
+						{/if}
+                        <div class="clear"></div>
+                    </ul>
+                </li>
+                {/volist}
+
+
+            </ul>
+            <div class="cgj_box_xuanzhong">
+                <div class="cgj_box_xuanzhong_div">
+                    已选中<span class="cgj_box_xuanzhong_span"></span>
+                </div>
+                <input class="cgj_box_xuanzhong_tijiao" type="submit" onclick="submitverify();" value="确认选择">
+            </div>
+        </div>
+        <div class="jcbox_content_jies">
+            <h2>竞猜冠军活动简介：</h2>
+            <p>1、车主可在活动规定时间段内参加猜冠军有奖活动，选择您心目中的冠军候选，在7月15日世界杯赛程结束后统一抽取各个阶段获奖人；</p>
+            <p>2、具体活动时间段及奖项说明：<br>在所有6月9日-6月20日猜中的玩家中抽取1位免费获赠全车顶配一套  （VK70+X15），价值约10000元，限五座车使用；<br>在所有6月21日-6月30日猜中的玩家中抽取2位免费获赠顶配前挡一个（VK70），价值约3280元；<br>在所有7月1日-7月6日猜中的玩家中抽取3位免费获赠威路VeRoad祈福/探索系列高端艺术车毯一套，价值约2280元；</p>
+            <p>3、中奖者会自动获得后台发放的优惠券，同时威固中国总部将主动联系用户，指导兑换事宜。</p>
+            <div class="ewmbox">
+                <img  src="/public/images/ewm.jpg">
+                <p >威路高端艺术车毯<br>
+                    扫描二维码，了解更多详情</p>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" name="activity_team_id" id="activity_team_id" >
+<input type="hidden"  id="is_name" value={$is_name}>
+
+<script type="text/javascript">
+if($('#is_name').val())
+    showErrorMsg($('#is_name').val());
+
+    function resetCs(name,activity_team_id) {
+        $('.cgj_box_xuanzhong_span').html(name);
+        $('#activity_team_id').val(activity_team_id);
+    }
+
+    function submitverify()
+    {
+
+        var data = {activity_team_id:$('#activity_team_id').val()};
+        $.ajax({
+            type : 'post',
+            url : '/mobile/GuessingCompetitionChampion/activityCompResultChampion',
+            data : data,
+            dataType : 'json',
+            success : function(data){
+                if(data.status == 1){
+                    showErrorMsg(data.msg);
+                    //window.location.reload();
+                    // window.location.href = data.url;
+
+                }else{
+                    showErrorMsg(data.msg);
+                    if (codeExist) {
+                        verify();
+                    } else {
+                        location.reload();
+                    }
+                }
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown) {
+                showErrorMsg('网络异常，请稍后重试');
+            }
+        })
+    }
+
+
+    $(".cgj_box_ul_li_ul_li").click(function () {
+        $(this).children(".cgj_box_ul_li_ul_li_h2").addClass("on").parents().siblings().children(".cgj_box_ul_li_ul_li_h2").removeClass("on");
+        $(this).parents().parents().siblings().children(".cgj_box_ul_li_ul").children().siblings().children(".cgj_box_ul_li_ul_li_h2").removeClass("on");
+    })
+</script>

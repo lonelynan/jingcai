@@ -1,0 +1,115 @@
+﻿{include file="public/header" title="竞猜胜负"  body=""/}
+
+<div class="jcbox">
+    <div class="jcbox_banner">
+        <img src="/template/mobile/static/images/jc_01.jpg" alt="竞猜活动">
+    </div>
+    <div class="jcbox_content">
+        <ul class="jcbox_content_ul">
+            <li class="indexbox_ul_li on1">
+                <a class="indexbox_ul_li_a" href="/mobile{$navigation[0]['url']}">{$navigation[0]['name']}</a>
+            </li>
+            <li class="indexbox_ul_li on2">
+                <a class="indexbox_ul_li_a" href="/mobile{$navigation[1]['url']}">{$navigation[1]['name']}</a>
+            </li>
+            <li class="indexbox_ul_li on3">
+                <a class="indexbox_ul_li_a" href="/mobile{$navigation[2]['url']}">{$navigation[2]['name']}</a>
+            </li>
+        </ul>
+        <div class="jcbox_content_xian">
+            <img src="/template/mobile/static/images/jc_01.png" alt="">
+        </div>
+        <h2 class="jcbox_content_h2">猜胜负，赢优惠券</h2>
+        <div class="jcbox_content_div">
+            <ul class="jcbox_content_div_ul">
+                {volist name="activity_settings" id="vo"}
+                <li class="jcbox_content_div_ul_li">
+                    <div class="jcbox_content_div_ul_li_box">
+                        <div class="jcbox_content_div_ul_li_div fl">
+                            <div class="jcbox_content_div_ul_li_div_img">
+                                <img class="jcbox_content_div_ul_li_div_img_img" src="{$vo.activity_team_image1}" alt="">
+                            </div>
+                            <h2 class="jcbox_content_div_ul_li_div_h2">{$vo.name1}</h2>
+                            <div class="jcbox_content_div_ul_li_div_number">
+                                <p class="jcbox_content_div_ul_li_div_number_p">{$vo.activity_team1__count}</p>
+                            </div>
+                        </div>
+                        <div class="jcbox_content_div_ul_li_vs fl">
+                            <h2 class="jcbox_content_div_ul_li_vs_h2">VS</h2>
+                        </div>
+                        <div class="jcbox_content_div_ul_li_div fl">
+                            <div class="jcbox_content_div_ul_li_div_img">
+                                <img class="jcbox_content_div_ul_li_div_img_img" src="{$vo.activity_team_image2}" alt="">
+                            </div>
+                            <h2 class="jcbox_content_div_ul_li_div_h2">{$vo.name2}</h2>
+                            <div class="jcbox_content_div_ul_li_div_number">
+                                <p class="jcbox_content_div_ul_li_div_number_p">{$vo.activity_team2__count}</p>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <ul class="jcbox_content_div_ul_li_ul">
+                        <li class="jcbox_content_div_ul_li_ul_li" onclick="submitverify({$vo.activity_settings_id},{$vo.activity_team1_id});">
+                            <a class="jcbox_content_div_ul_li_ul_li_a" >加油助威</a>
+                        </li>
+                        <li class="jcbox_content_div_ul_li_ul_li on" onclick="submitverify({$vo.activity_settings_id},{$vo.activity_team1_id}+'_'+{$vo.activity_team2_id});">
+                            <a class="jcbox_content_div_ul_li_ul_li_a">打平</a>
+                        </li>
+                        <li class="jcbox_content_div_ul_li_ul_li" onclick="submitverify({$vo.activity_settings_id},{$vo.activity_team2_id});">
+                            <a class="jcbox_content_div_ul_li_ul_li_a">加油助威</a>
+                        </li>
+                    </ul>
+                </li>
+              {/volist}
+            </ul>
+        </div>
+        <div class="jcbox_content_jies">
+            <h2>竞猜胜负活动简介：</h2>
+            <p>1、车主根据活动比赛场次竞猜胜负，比赛结果揭晓后，所有猜中者将获得威固贴膜优惠券500元（仅限贴全车顶配时使用），未猜中者还有机会继续参与下场活动；</p>
+            <p>2、车主连续猜中比赛结果，所获优惠券金额会以100元为基数自动递增：如A和B第一场都猜中，均获500元优惠券的情况下，A猜中第二场，B没猜中，则A在第二场可获得600元优惠券，B在第二场无法获得优惠券；第三场A没猜中，B猜中，则A在第三场无法获得优惠券，B在第三场可获得500元优惠券，以此类推；</p>
+            <p>3、所有优惠券都可分享给朋友，但每张优惠券仅限使用一次。</p>
+            <p>4、车主所获得的优惠券不能叠加使用，且该优惠券不能与线下门店世界杯活动同时使用。</p>
+            <p>5、关于核销：车主持所拥有的优惠券至门店消费，需提前展示优惠券给门店，由门店点击核销后才能享受优惠。车主自行点击核销后，优惠券无效。可参加其他活动再次获取优惠券。</p>
+        </div>
+    </div>
+</div>
+<div class="loginsingup-input">
+
+
+
+
+
+</div>
+
+
+<script>
+    function submitverify(activity_settings_id,activity_team_id)
+    {
+        var data = {activity_settings_id:activity_settings_id,activity_team_id:activity_team_id};
+        $.ajax({
+            type : 'post',
+            url : '/mobile/GuessingCompetition/activityCompResult',
+            data : data,
+            dataType : 'json',
+            success : function(data){
+                if(data.status == 1){
+                    alert(data.msg);
+                    window.location.reload();
+                       // window.location.href = data.url;
+
+                }else{
+                    showErrorMsg(data.msg);
+                    if (codeExist) {
+                        verify();
+                    } else {
+                        location.reload();
+                    }
+                }
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown) {
+                showErrorMsg('网络异常，请稍后重试');
+            }
+        })
+    }
+
+</script>

@@ -1,0 +1,223 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:28:"./template/user\relogin.html";i:1528682411;s:29:"./template/public\header.html";i:1528771227;}*/ ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/temp/css/reg.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/temp/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/temp/css/myaccount.css"/>
+    <script src="__PUBLIC__/temp/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name = "format-detection" content="telephone = no" />
+    <title>威固中国竞猜平台</title>
+    <!--<link rel="stylesheet" href="__STATIC__/css/style.css">-->
+    <link rel="stylesheet" href="__PUBLIC__/css/reset.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/index.css">
+
+    <script src="__PUBLIC__/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!--<link rel="stylesheet" type="text/css" href="__STATIC__/css/iconfont.css"/>-->
+    <!--<link href="__PUBLIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />-->
+    <script src="__PUBLIC__/js/js.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__PUBLIC__/js/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+    <!--<link href="__PUBLIC__/bootstrap/css/font-awesome.min.css" rel="stylesheet" type="text/css" />-->
+    <link rel="stylesheet" href="__PUBLIC__/js/layer/skin/layer.css">
+
+
+</head>
+<body class="">
+
+<div class="bigbg">
+    <div class="regcon">
+        <span class="m-fntit">欢迎注册</span>
+        <div class="ui_tab">
+
+            <?php if($reg_type == ''): ?>
+            <form id="reg_form2"  method="post" action="">
+                <input type="hidden" name="scene" value="1">
+                <div class="ui_tab_content">
+                    <div class="m-fnbox ui_panel" style="display: block;">
+                        <div class="fnlogin clearfix">
+
+                            <div class="line">
+                                <label class="linel"><span class="dt">手机号码：</span></label>
+                                <div class="liner">
+                                    <input type="text" class="inp fmobile J_cellphone" placeholder="请输入手机号码"  name="username" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" id="username" required=""/>
+                                </div>
+                                <div class="clear">
+                            </div>
+
+                            <if condition="$tpshop_config['sms_regis_sms_enable'] eq 1" >
+                                <div class="line">
+                                    <label class="linel"><span class="dt">手机验证码：</span></label>
+                                    <div class="liner">
+                                        <input type="text" class="inp imgcode J_imgcode" placeholder="手机验证码" id="code" name="code" required=""/>
+                                        <button class="fn-fl icode" onclick="send_sms_reg_code()" type="button" id="count_down">发送</button>
+                                    </div>
+                                    <div id="show-voice" class="show-voice"></div>
+                                </div>
+                            </if>
+
+
+                            <div class="line liney clearfix">
+                                <label class="linel">&nbsp;</label>
+                                <div class="liner" style="float: none">
+
+                                    <a class="regbtn J_btn_agree" href="javascript:void(0);" onClick="check_submit();">登 录</a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <?php endif; ?>
+
+        </div>
+
+    </div>
+</div>
+
+</div>
+<div class="indexbox">
+    <div class="indexbox_bg"></div>
+    <ul class="indexbox_ul">
+        <li class="indexbox_ul_li on1">
+            <a class="indexbox_ul_li_a" href="/home<?php echo $navigation[0]['url']; ?>"><?php echo $navigation[0]['name']; ?></a>
+        </li>
+        <li class="indexbox_ul_li on2">
+            <a class="indexbox_ul_li_a" href="/home<?php echo $navigation[1]['url']; ?>"><?php echo $navigation[1]['name']; ?></a>
+        </li>
+        <li class="indexbox_ul_li on3">
+            <a class="indexbox_ul_li_a" href="/home<?php echo $navigation[2]['url']; ?>"><?php echo $navigation[2]['name']; ?></a>
+        </li>
+    </ul>
+</div>
+
+<!--footer-s-->
+<!--<div class="footer p">-->
+    <!--<include file="public/footer" />-->
+<!--</div>-->
+<!--footer-e-->
+<script>
+
+    $(document).ready(function(){
+        $('input').click(function(){
+            $(this).siblings('p').hide();
+        });
+
+    });
+
+
+    function check_submit(){
+
+        $.ajax({
+            type : "POST",
+            url:"<?php echo url('Home/User/regjc'); ?>",
+            dataType: "json",
+            data: $('#reg_form2').serialize(),
+            success: function(data){
+                if(data.status == 1){
+                    alert(data.msg)
+                    window.location.href = "<?php echo url('Home/Index/index'); ?>";
+
+                }else{
+                    alert(data.msg)
+                }
+            }
+        });
+
+    }
+    // 电子邮件注册  和 手机号码注册 切换
+    function reg_tab(id,id2){
+        $('#'+id).addClass('ema-tab');
+        $('#'+id2).removeClass('ema-tab');
+        $('#'+id+'_div').show();
+        $('#'+id2+'_div').hide();
+    }
+    // 发送手机短信
+    function send_sms_reg_code(){
+        var mobile = $('input[name="username"]').val();
+        var verify_code = $('input[name="verify_code"]').val();
+        if(!checkMobile(mobile)){
+            alert('请输入正确的手机号码', {icon: 2});//alert('请输入正确的手机号码');
+            return;
+        }
+        if(verify_code == ''){
+            alert('请输入图像验证码', {icon: 2});//alert('请输入正确的手机号码');
+            return;
+        }
+
+        $.ajax({
+            url:"/Home/Api/send_validate_code/scene/1/type/mobile/send/"+mobile,
+            dataType: "json",
+            success: function(res){
+                if(res.status == 1)
+                {
+                    $('#count_down').attr("disabled","disabled");
+                    intAs = 120; // 手机短信超时时间
+                    jsInnerTimeout('count_down',intAs);
+                    alert(res.msg, {icon: 1});
+                }else{
+                    alert(res.msg, {icon: 2});
+                    verify('reflsh_code2')
+                }
+            }
+        });
+    }
+
+
+
+    $('#count_down').removeAttr("disabled");
+    //倒计时函数
+    function jsInnerTimeout(id,intAs)
+    {
+        var codeObj=$("#"+id);
+        //var intAs = parseInt(codeObj.attr("IntervalTime"));
+
+        intAs--;
+        if(intAs<=-1)
+        {
+            codeObj.removeAttr("disabled");
+//            codeObj.attr("IntervalTime",60);
+            codeObj.text("发送");
+            return true;
+        }
+
+        codeObj.text(intAs+'秒');
+//        codeObj.attr("IntervalTime",intAs);
+
+        setTimeout("jsInnerTimeout('"+id+"',"+intAs+")",1000);
+    };
+
+
+    function checkMobile(tel) {
+//        var reg = /(^1[3|4|5|7|8][0-9]{9}$)/;
+        var reg = /^1[0-9]{10}$/;
+        if (reg.test(tel)) {
+            return true;
+        }else{
+            return false;
+        };
+    }
+
+    function checkEmail(str){
+        var reg = /^([a-zA-Z0-9]+[_|\-|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\-|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+        if(reg.test(str)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

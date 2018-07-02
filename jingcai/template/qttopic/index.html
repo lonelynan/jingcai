@@ -1,0 +1,67 @@
+﻿<script src="__PUBLIC__/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+{include file="mobile/public/wx_share_topic" title="竞猜胜负"  body=""/}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>威固世界杯活动</title>
+	<meta name="sharecontent" data-msg-img="" data-msg-title="威固世界杯活动" data-msg-content="“膜”力世界杯，足“购”大盛会" data-msg-callBack="" data-line-img="" data-line-title="威固世界杯活动" data-line-callBack=""/>
+    <link rel="stylesheet" href="/template/qttopic/reset.css">
+    <link rel="stylesheet" href="/template/qttopic/zty.css">
+
+</head>
+<body>
+
+<div class="dztbanner">
+    <img src="/template/qttopic/images/ztbanner.jpg">
+</div>
+<div class="dztbox">
+    <ul class="dztbox_ul">
+        <li class="dztbox_ul_li fl on">
+            <a href="http://jingcai.v-koolchina.com.cn" target="_blank">
+                <div class="dztbox_ul_li_img">
+                    <img src="/template/qttopic/images/zt_01.png">
+                </div>
+                <div class="dztbox_ul_li_text on1">
+                    <img src="/template/qttopic/images/zt_02.png">
+                </div>
+            </a>
+        </li>
+        <li class="dztbox_ul_li fr">
+            <a href="http://wechat.v-koolchina.com.cn/submit/index.html" target="_blank">
+                <div class="dztbox_ul_li_img">
+                    <img src="/template/qttopic/images/zt_01.png">
+                </div>
+                <div class="dztbox_ul_li_text on2">
+                    <img src="/template/qttopic/images/zt_03.png">
+                </div>
+            </a>
+        </li>
+    </ul>
+    <div class="dztbox_div">
+        <div class="dztbox_div_title">
+            <img src="/template/qttopic/images/zt_06.png">
+        </div>
+        <div class="dztbox_div_content">
+            <ul class="dztbox_div_content_ul">
+                {volist name="$zhuanti" id="vo"  key=key}
+
+				<h2 class="dztbox_div_content_ul_li_h2">{$key}</h2>
+
+
+                <li class="dztbox_div_content_ul_li">
+                    <h2 class="dztbox_div_content_ul_li_h2">{$k}.{$vo.1[0]}</h2>
+                    <p class="dztbox_div_content_ul_li_p">{$vo.1[1]}</p>
+                     {if !empty($vo['2'])}
+					<p class="dztbox_div_content_ul_li_p">电话：{$vo.1[2]}</p>
+					{/if}
+                    <h3 class="dztbox_div_content_ul_li_h3">★★★★★</h3>
+                </li>
+
+			{/volist}
+            </ul>
+            <div class="dztbox_div_content_img">
+                <img src="/template/qttopic/images/zt_07.png">
+            </div>
+        </div>
+    </div>
+</div>

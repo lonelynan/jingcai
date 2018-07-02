@@ -1,0 +1,340 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{ margin:0px; padding:0px; font-size:12px;font-family:"微软雅黑","黑体";color:#898989;line-height:24px; background:#fff;}
+ul,li,dl,dd,dt,p,h1,h2,h3,h4,h5,h6,ol,form{ margin:0px; padding:0px;}
+ul,li{ list-style:none}
+img{border:0px; padding:0px;}
+a{ color:#5c5c5c; text-decoration:none}
+.clear{ clear:both;font-size:0px; line-height:0px}
+.divleft{ float:left}
+.divright{ float:right}
+.hidden{display:none;}
+
+*html{background-image:url("d")/*tpa=http://www.sstir.cn/2017/css/d*/; background-attachment:fixed;}
+
+
+
+/***********index*********/
+
+/*公共*/
+.jz{ width:1190px; margin:0 auto}
+#nm{ margin-right:0}
+.head{ background:#f9f9f9}
+.head-c{ height:41px; line-height:41px; padding:10px 0}
+.head-l{ float:left}
+
+.head-l ul{ float:left;  font-size:16px; font-family:"Arial","微软雅黑";}
+.head-l ul li{ float:left; margin-right:20px;}
+.head-l ul li a{color:#000; padding-bottom:8px;}
+.head-l ul li:hover a,.head-l ul li.head-hover a{color:#68A3D8; border-bottom:2px solid #68A3D8}
+
+.head-r{ float:right;}
+.head-r span{ float:left}
+.head-r a{ float:left; font-size:14px;margin-left:24px; color:#333333}
+.head-r a:hover{color:#68A3D8;}
+
+.logo2017{ height:40px; margin:20px auto}
+.logo2017-l{ float:left}
+.logo2017-l dt{ float:left; margin-right:18px}
+.logo2017-l dd{ float:left}
+.logo2017-l dd p{ font-size:28px; color:#333; line-height:28px; margin:0px 0 0px}
+.logo2017-l dd img{ height:44px;margin:-8px 1px 0 0; vertical-align: middle}
+.logo2017-l dd span{font-family:"Arial","微软雅黑"; }
+
+/* search */
+.search-public{height:45px;width:542px; float:right; margin-top:5px;border:1px solid;}
+.search-public select{display:none;}
+.search-c1{height:43px;width:455px;float:left; font-family:"宋体"; background:none}
+.search-public input.inp_srh,.search input.btn_srh{border:none;background:none;}
+.search-public input.inp_srh{outline:none;width:381px; font-size:14px; color:#666; line-height:43px; height:43px; padding-left:17px;}
+.search-public input.btn_srh{width:85px; height:45px;float:right; background:#666; font-size:18px; color:#fff; cursor:pointer; font-family:"微软雅黑"; border:none}
+.search-public input.inp_srh:-moz-placeholder {color: #ccc; }
+.search-public input.inp_srh::-moz-placeholder {color: #ccc;}
+.search-public input.inp_srh:-ms-input-placeholder{color: #ccc;}
+.search-public input.inp_srh::-webkit-input-placeholder{color: #ccc;}
+
+.nav2017 ul{background:url("index-05.jpg")bottom left repeat-x; overflow:hidden; height:41px;}
+.nav2017 li:hover a,.nav2017 li.nav2017-hover a{ border-bottom:2px solid #679BD7; color:#679BD7}
+.nav2017 li a{ display:block; padding:0 0px 15px; text-align:center; color:#000; font-size:18px}
+.nav2017 li{ float:left;}
+
+.main-w{ padding:37px 0 50px; box-shadow:0px 4px 12px #ddd; border:1px solid #dddddd; background:#fff; margin-top:-1px}
+.bf9{ background:#f9f9f9; padding:46px 0 56px}
+
+.foot{ background:#f0f0f0; padding:23px 0 25px;}
+.foot-c2{ overflow:hidden}
+.foot-c2 ul{ float:left}
+.foot-c2 ul li{ float:left; margin-right:22px;}
+.foot-c2 ul li a{ margin-top:-4px; display:block}
+.foot-c2 dl{ float:left; margin:8px 0 0 9px;}
+.foot-c2 dl dd{ font-size:16px; color:#000; line-height:30px}
+.foot-c2 dl dd a{ color:#000; margin-right:19px}
+.foot-c2 dl dd a:hover{ color:#68A3D8}
+.foot-c2 dl dd b{ font-weight:normal; margin-left:19px; background:url("index-i21.png") center left no-repeat; padding-left:25px}
+.foot-c2 div{ float:right; margin-top:8px}
+
+/*公共*/
+
+.search{ width:1188px;overflow: hidden; background:#fff; margin:0 auto; font-size:12px; border:#ddd 1px solid;border-radius:4px; }
+.search2{ width:1188px; overflow: hidden; background:#FFFBE8; margin:0 auto; font-size:14px; border-bottom:#ddd solid 1px; border-left:#ddd solid 1px; border-right:#ddd solid 1px;}
+.search span,.search2 span{ font-family:Arial;}
+.search_left2 span { padding-left:5px; }
+.search_left{  width:110px; line-height:42px; text-align:center; }
+.search_left2{  width:110px; line-height:42px;  color:#FF4D4D; font-family:"宋体";
+    font-weight:bold;margin-left: 20px;}
+.search_left3{ float:left; width:108px; line-height:42px; text-align:center;}
+.search_right{float:left; display:block; width:1050px; padding:5px 0;  }
+
+.search_right a { padding: 0 18px;
+    line-height:34px;
+    display:inline-block;
+    font-family:"宋体";
+    text-decoration: none;
+    font-size: 14px;
+    color: #000;
+}
+
+.search_right a:hover {
+    color: #69a5db;
+}
+.search_right span {
+    font-family: Arial;
+    font-size: 12px;
+    color: #999;
+    padding-left:5px;
+}
+/* 检索结束 */
+
+.news{ width:1190px; margin:0 auto;}
+.personnel{ width:1200px; margin:auto; height:832px; margin-top:24px;}
+.personnel_1{ width:550px; height:208px; margin:0 25px; float:left;border-bottom:#CCC dashed 1px;}
+.personnel_1:hover{ background:#eee;}
+.personnel_1_left{ float:left;}
+.personnel_1_left img{
+    border: #CCC solid 1px;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 50%;
+    padding: 5px;
+    margin:24px;
+}
+.personnel_1_right{ float:right;width: 318px;
+    height: 156px; margin:30px 20px 30px 0;
+    font-size: 14px;
+    line-height: 25px;}
+.personnel_1_right span{ color:#888;}
+.name{ font-size:18px; font-weight:bold;}
+.zan{ background:url("zan.png")/*tpa=http://www.sstir.cn/images/zan.png*/ no-repeat left; padding-left:26px;}
+.zan:hover{ background:url("zan1.png")/*tpa=http://www.sstir.cn/images/zan1.png*/ no-repeat left;}
+.xin{ background:url("xin.png")/*tpa=http://www.sstir.cn/images/xin.png*/ no-repeat left; padding-left:26px;}
+.xin:hover{ background:url("xin2.png")/*tpa=http://www.sstir.cn/images/xin2.png*/ no-repeat left;}
+
+
+/* 仪器详情 */
+
+
+
+.exhibition_one{
+    position:relative;
+    text-align: center;
+    width: 1100px;
+    min-height:150px;
+    float: left;
+    margin:10px 48px;
+}
+.exhibition_img{
+    border: #CCC solid 1px;
+    width: 130px;
+    height: 130px;
+    overflow: hidden;
+    padding: 0px;
+
+}
+.exhibition_img:hover{ opacity:0.8;}
+.exhibition_one>p.stars {
+    text-align: center;
+    padding-top:10px;
+}
+.exhibition_one>p.title{ text-align:;padding-top:16px; font-size:11px;line-height: 20px;height:40px}
+.title:hover{ color:#68a3d8;}
+.enterprise{ font-size:14px; color:#666; font-family:"宋体"; line-height:34px;}
+
+.personnel_1_right1{ float:right;width: 500px;
+    height: 156px; margin:30px 20px 30px 0;
+    font-size: 14px;
+    line-height: 25px;}
+.personnel_1_right1 span{ color:#888;}
+.kjq{ position: absolute;
+    top:0;
+    right:20px;
+    width: 65px;
+    height: 65px;}
+#kejiq2{
+    width: 65px;
+    height: 65px;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+}
+
+img{
+    border:none;
+    vertical-align:middle;
+}
+ul,ol{
+    list-style-type:none;
+    width:100%;
+}
+textarea{
+    resize:none;
+}
+table{
+    empty-cells:hide;
+    border-collapse:collapse;
+    width:100%;
+}
+.sexArea_one{vertical-align: top;
+}
+
+input {
+    outline: none;
+    font-family: 'Microsoft Yahei';
+}
+
+#wrapper{
+    width:100%;
+}
+.logo{
+    margin-top: 20px;
+    font-size:30px;
+    float:left;
+    width:550px;
+}
+.logo img{ }
+.banner{
+    height:45px;
+    line-height:45px;
+    background-color:#fcfcfc;
+    border-bottom:1px solid #edeef0;
+    font-size:12px;
+}
+.binner,.head,.nav,.nav3s,.mainNav,.bdecharts,.con{
+    width:1190px;
+    margin:0 auto;
+    clear:both;
+}
+.stylenav{
+    background-color: #fcfcfc;
+    border-bottom: 1px solid #edeef0;
+    width:85%;
+    float:left;
+}
+.stylenav li > a,.lrnav li>a{
+    padding:0 5px;
+    color:#333;
+}
+.stylenav a.hover{
+    color:#68a3d8;
+}
+
+.lrnav{
+    background-color: #fcfcfc;
+    border-bottom: 1px solid #edeef0;
+    width:170px;
+    float:right;
+}
+.lrnav a.hover{
+    color:#68a3d8;
+}
+
+.head{
+    height:85px;
+    line-height:85px;
+}
+.nav{
+    font-size:18px;
+}
+
+.nav ul{
+    height:60px;
+    line-height:60px;
+    border-bottom:1px solid #ddd;
+}
+.nav ol{
+    clear:both;
+    height:50px;
+    line-height:50px;
+}
+
+.nav ul > li,.nav ol > li {
+    float:left;
+}
+.nav ul > li a{
+    color:#333;
+    padding:0 36px;
+    display:block;
+    height:59px;
+    line-height:60px;
+}
+
+.nav ul > li a:hover{
+    border-bottom:2px solid #679bd7;
+    color:#679bd7;
+    text-decoration:none;
+}
+
+
+.nav ol > li  a{
+    font-size:16px;
+    padding-left:140px;
+    padding-right:10px;
+    display:block;
+    color:#333;
+}
+.nav ol >li img{
+    width:8px;
+    float:right !important;
+    display:block !important;
+    margin-left:170px !important;
+    margin-top:-40px;
+}
+.nav sup{
+    color:#f60;
+    padding-left:5px;
+    font-size:13px;
+}
+.dataShai {
+    list-style: none;
+    position: absolute;
+    font-size: 18px;
+    margin-left: 10px;
+    height: 60px;
+    text-align: center;
+    border-bottom: 2px solid #ddd;
+}
+.mainNav{
+    margin-top:20px;
+    margin-bottom:20px;
+    border-bottom:1px solid #ddd;
+}
+.mainNav th{
+    background:url("circleBg.png")/*tpa=http://www.sstir.cn/images/circleBg.png*/ top center no-repeat;
+    height:180px;
+    font-size:28px;
+    width:33.3%;
+}
+.mainNav td{
+    text-align:center;
+    padding:10px 0;
+}
+.mainNav td label{
+    font-size:18px;
+}
+.mainNav th>a{
+    text-decoration: none;
+    color:#68a3d8;
+}
+
+

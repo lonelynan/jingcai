@@ -1,0 +1,112 @@
+{include file="public/header" title="竞猜胜负"  body=""/}
+
+<!--<div class="logo-wrap-bg">-->
+    <!--<a class="login-logo-wrap" href="#">-->
+        <!--&lt;!&ndash;<img src="__STATIC__//template/mobile/static/images/logo-login.png" alt="LOGO"/>&ndash;&gt;-->
+    <!--</a>-->
+<!--</div>-->
+
+
+
+
+
+<div class="jcbox">
+    <div class="jcbox_banner">
+        <img src="/public/images/nybanner.jpg" alt="竞猜活动">
+    </div>
+    <div class="jcbox_content">
+
+        <div class="jcbox_contentbox"  id="2">
+            <ul class="jcbox_content_ul fl">
+                <li class="jcbox_content_ul_li1">
+                    <a href="/home{$navigation[0]['url']}#2"><img src="/public/images/title.png"></a>
+                </li>
+                <li class="jcbox_content_ul_li1">
+                    <a href="/home{$navigation[1]['url']}#2"><img src="/public/images/title1.png"></a>
+                </li>
+                <li class="jcbox_content_ul_li1">
+                    <a href="/home{$navigation[2]['url']}#2"><img src="/public/images/title22.png"></a>
+                </li>
+            </ul>
+            <div class="jcbox_content_box fr">
+                <img class="jc01_img" src="/public/images/jc1_02.png">
+            </div>
+            <div class="clear"></div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<script>
+    function activityCoupons(code)
+    {
+
+        var data = {code:code};
+        $.ajax({
+            type : 'post',
+            url : '/mobile/Coupons/activityCoupons',
+            data : data,
+            dataType : 'json',
+            success : function(data){
+                if(data.status == 1){
+                    showErrorMsg(data.msg);
+                    window.location.reload();
+                    // window.location.href = data.url;
+
+                }else{
+                    showErrorMsg(data.msg);
+                    if (codeExist) {
+                        verify();
+                    } else {
+                        location.reload();
+                    }
+                }
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown) {
+                showErrorMsg('网络异常，请稍后重试');
+            }
+        })
+    }
+
+    function activityCouponsG(code)
+    {
+        var data = {code:code};
+        $.ajax({
+            type : 'post',
+            url : '/mobile/Coupons/activityCouponsG',
+            data : data,
+            dataType : 'json',
+            success : function(data){
+                if(data.status == 1){
+                    showErrorMsg(data.msg);
+                    window.location.reload();
+                    // window.location.href = data.url;
+
+                }else{
+                    showErrorMsg(data.msg);
+                    if (codeExist) {
+                        verify();
+                    } else {
+                        location.reload();
+                    }
+                }
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown) {
+                showErrorMsg('网络异常，请稍后重试');
+            }
+        })
+    }
+</script>
+
+<script type="text/javascript">
+    /*Copy function implementation */
+    function copyContent(){
+        var copyobject=document.getElementById("copy-content");
+        copyobject.select();
+        document.execCommand("Copy");
+        alert("优惠券链接已复制成功，快去粘贴分享吧~");
+    };
+</script>

@@ -1,0 +1,54 @@
+{include file="public/header" title="Matmass资讯"/}
+<div class="classreturn loginsignup ">
+    <div class="content">
+
+        <div class="ds-in-bl search center">
+            <span>Matmass咨询</span>
+        </div>
+        <div class="ds-in-bl menu">
+            <a href="javascript:void(0);"><img src="__STATIC__/images/class1.png" alt="菜单"></a>
+        </div>
+    </div>
+</div>
+<style>
+    #content p{
+        text-align:left;
+    }
+</style>
+<div class="banner" id="brandstr">
+
+        <a href="">
+            <img src="/public/upload/article/2018/01-16/74cd2be92cd4c90a2b57be5d1ab9f5ee.png" title="" style=""/>
+        </a>
+
+
+</div>
+<!--详情-s-->
+<div class="xq_details">
+    <div class="sg">
+        <div class="spxq p">
+            <div id="content"> <!--可编辑区域开始-->
+                <div>
+                    <table style="width:100%; border-collapse:collapse ;text-align: left">
+                    {volist name="$articlelist" id="vo"}
+
+                        <tr style="height:50px;padding: 12px; border-bottom: solid 1px #EEEEEE;">
+                            <td style="height:50px;padding: 10px;"><img src="{$vo.thumb}"/></td>
+                            <td style="height:50px;padding: 10px;"><span style="font-size: 38px">{$vo.title}</span><br><span style="font-size: 28px">{$vo.content||substr=0,96}...</span></td>
+                        </tr>
+
+                    {/volist}
+                    </table>
+
+                </div>
+                <!--可编辑区域结束-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--详情-e-->
+<script src="__STATIC__/js/style.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript"></script>
+<include file="public/wx_share"/>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<include file="public/layout" />
+
+<script src="__ROOT__/public/static/js/layer/laydate/laydate.js"></script>
+
+<style type="text/css">
+    html, body {
+        overflow: visible;
+    }
+</style>
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+            <div class="subject">
+                <h3>猜冠军活动设置 - 编辑活动</h3>
+                <h5>网站系统专题索引与管理</h5>
+            </div>
+        </div>
+    </div>
+    <form class="form-horizontal" id="handleposition"  method="post">
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">
+                    <label><em>*</em>活动标题</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="title" value="{$info.title}"class="input-txt">
+                    <span class="err" id="err_title"></span>
+                    <p class="notic"></p>
+                </dd>
+            </dl>
+           <!-- <dl class="row">
+                <dt class="tit">
+                    <label><em>*</em>卡劵积分</label>
+                </dt>
+                <dd class="opt">
+                    <input type="number" name="coupon" value="{$info.coupon}"class="input-txt">
+
+                    <p class="notic"></p>
+                </dd>
+            </dl>-->
+            <dl class="row">
+                <dt class="tit">
+                    <label><em>*</em>开始日期</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="start_date"id="start_date" value="{$info.start_date ?? ''}"class="input-txt">
+                    <span class="add-on input-group-addon">
+                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="articleForm"><em>*</em>发布时间</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" class="input-txt" id="end_date" name="end_date"  value="{$info.end_date ?? ''}">
+                    <span class="add-on input-group-addon">
+                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+            </span>
+                    <span class="err"></span>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="parent_id">竞猜1</label>
+                </dt>
+                <dd class="opt">
+                    <select class="small form-control" style="width:200px"  tabindex="1" name="activity_team1_id" id="activity_team1_id">
+                        <option value="0">请选择</option>
+                        <foreach name="activity_team_select"  item="vo" key="k" >
+                            <option value="{$k}" <if condition="($info.activity_team1_id == $k) ">selected</if>>{$vo}</option>
+                        </foreach>
+                    </select>
+                    <span class="err"></span>
+                    <p class="notic">如果选择上级分类，那么新增的分类则为被选择上级分类的子分类</p>
+                </dd>
+            </dl>
+
+            <dl class="row">
+                <dt class="tit">
+                    <label for="parent_id">竞猜2</label>
+                </dt>
+                <dd class="opt">
+                    <select class="small form-control" style="width:200px"  tabindex="1" name="activity_team2_id" id="activity_team2_id">
+                        <option value="0">请选择</option>
+                        <foreach name="activity_team_select"  item="vo" key="k" >
+                            <option value="{$k}" <if condition="($info.activity_team2_id == $k) ">selected</if>>{$vo}</option>
+                        </foreach>
+                    </select>
+                    <span class="err"></span>
+                    <p class="notic">如果选择上级分类，那么新增的分类则为被选择上级分类的子分类</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="parent_id">竞猜3</label>
+                </dt>
+                <dd class="opt">
+                    <select class="small form-control" style="width:200px"  tabindex="1" name="activity_team3_id" id="activity_team3_id">
+                        <option value="0">请选择</option>
+                        <foreach name="activity_team_select"  item="vo" key="k" >
+                            <option value="{$k}" <if condition="($info.activity_team3_id == $k) ">selected</if>>{$vo}</option>
+                        </foreach>
+                    </select>
+                    <span class="err"></span>
+                    <p class="notic">如果选择上级分类，那么新增的分类则为被选择上级分类的子分类</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="parent_id">竞猜4</label>
+                </dt>
+                <dd class="opt">
+                    <select class="small form-control" style="width:200px"  tabindex="1" name="activity_team4_id" id="activity_team4_id">
+                        <option value="0">请选择</option>
+                        <foreach name="activity_team_select"  item="vo" key="k" >
+                            <option value="{$k}" <if condition="($info.activity_team4_id == $k) ">selected</if>>{$vo}</option>
+                        </foreach>
+                    </select>
+                    <span class="err"></span>
+                    <p class="notic">如果选择上级分类，那么新增的分类则为被选择上级分类的子分类</p>
+                </dd>
+            </dl>
+
+            <dl class="row">
+                <dt class="tit">
+                    <label>是否显示</label>
+                </dt>
+                <dd class="opt">
+                    <div class="onoff">
+                        <label for="article_show1" class="cb-enable <if condition="$info.show_in_nav eq 1">selected</if>">是</label>
+                        <label for="article_show0" class="cb-disable <if condition="$info.show_in_nav eq 0">selected</if>">否</label>
+                        <input id="article_show1" name="show_in_nav" value="1" type="radio" <if condition="$info.show_in_nav eq 1"> checked="checked"</if>>
+                        <input id="article_show0" name="show_in_nav" value="0" type="radio" <if condition="$info.show_in_nav eq 0"> checked="checked"</if>>
+                    </div>
+                    <p class="notic"></p>
+                </dd>
+            </dl>
+            <div class="bot">
+
+                <a href="JavaScript:void(0);"  onclick="adsubmit(2)" class="ncap-btn-big ncap-btn-green">发布活动</a>
+            </div>
+        </div>
+        <input type="hidden" name="act" value="{$act}">
+        <input type="hidden" name="activity_settings_champion_id" value="{$info.activity_settings_champion_id}">
+        <input type="hidden" id="state" name="state" value="2">
+    </form>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#start_date').layDate();
+    });
+    $(function () {
+        $('#end_date').layDate();
+    });
+    function adsubmit(state) {
+        $('span.err').hide();
+        $('#state').val(state);
+        $.ajax({
+            type: "POST",
+            url: "{:url('Admin/ActivitySettingsChampion/activitySettingsChampionHandle')}",
+            data: $('#handleposition').serialize(),
+            dataType: "json",
+            error: function () {
+                layer.alert("服务器繁忙, 请联系管理员!");
+            },
+            success: function (data) {
+                if (data.status === 1) {
+                    layer.msg(data.msg, {icon: 1,time: 1000}, function() {
+                        location.href = "{:url('Admin/ActivitySettingsChampion/activitySettingsChampionList')}";
+                    });
+                } else if(data.status === 0) {
+                    layer.msg(data.msg, {icon: 2,time: 1000});
+                    $.each(data.result, function(index, item) {
+                        $('#err_' + index).text(item).show();
+                    });
+                } else {
+                    layer.msg(data.msg, {icon: 2,time: 1000});
+                }
+            }
+        });
+    }
+    
+    function img_call_back(fileurl_tmp)
+    {
+        $("#topic_image").val(fileurl_tmp);
+        $("#img_a").attr('href', fileurl_tmp);
+        $("#img_i").attr('onmouseover', "layer.tips('<img src="+fileurl_tmp+">',this,{tips: [1, '#fff']});");
+    }
+</script>
+</body>
+</html>

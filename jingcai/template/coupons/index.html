@@ -1,0 +1,279 @@
+{include file="public/header" title="竞猜胜负"  body=""/}
+
+<!--<div class="logo-wrap-bg">-->
+    <!--<a class="login-logo-wrap" href="#">-->
+        <!--&lt;!&ndash;<img src="__STATIC__//template/mobile/static/images/logo-login.png" alt="LOGO"/>&ndash;&gt;-->
+    <!--</a>-->
+<!--</div>-->
+
+
+
+
+
+<div class="jcbox">
+    <div class="jcbox_banner">
+        <img src="/public/images/nybanner.jpg" alt="竞猜活动">
+    </div>
+    <div class="jcbox_content">
+
+        <div class="jcbox_contentbox"  id="2">
+            <ul class="jcbox_content_ul fl">
+                <li class="jcbox_content_ul_li1">
+                    <a href="/home{$navigation[0]['url']}#2"><img src="/public/images/title.png"></a>
+                </li>
+                <li class="jcbox_content_ul_li1">
+                    <a href="/home{$navigation[1]['url']}#2"><img src="/public/images/title1.png"></a>
+                </li>
+                <li class="jcbox_content_ul_li1">
+                    <a href="/home{$navigation[2]['url']}#2"><img src="/public/images/title22.png"></a>
+                </li>
+            </ul>
+            <div class="jcbox_content_box fr">
+                <div class="kaquanbox">
+                    <ul class="kaquanbox_ul">
+
+                        {volist name="activity_comp_result" id="vo"}
+                        {switch name="vo.cancellation_coupons"}
+                        {case value="0"}
+                        <li class="kaquanbox_ul_li fl">
+
+
+                                {if condition="$vo.expiration_date_status eq '0'"}
+                            <div class="kaquanbox_ul_li_div fl">
+                                <div class="kaquanbox_ul_li_div_img fl">
+                                    <img src="/template/mobile/static/images/kaquan_05.png">
+                                </div>
+                                <div class="kaquanbox_ul_li_div_text fl">
+                                    <h2 class="kaquanbox_ul_li_div_text_h2">{$vo.coupon}元
+                                    </h2>
+
+                                    <button class="copy-button" data-clipboard-text="http://jingcai.v-koolchina.com.cn/asccode/c/{$vo.coupon_code}" >分享</button>
+
+                                    <div class="clear"></div>
+
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="kaquanbox_ul_li_but fl">
+                                <h2 class="kaquanbox_ul_li_but_h2" onclick="activityCoupons('{$vo.coupon_code}')">
+                                    核<br>
+                                    销
+                                </h2>
+                            </div>
+                                {else /}
+                            <div class="kaquanbox_ul_li_div fl">
+                                <div class="kaquanbox_ul_li_div_img fl">
+                                    <img src="/template/mobile/static/images/kaquan_05.png">
+                                </div>
+                                <div class="kaquanbox_ul_li_div_text fl">
+                                    <h2 class="kaquanbox_ul_li_div_text_h2">{$vo.coupon}元
+                                    </h2>
+
+                                    <button class="copy-button" onclick="alert('此优惠券已过期');" >分享</button>
+
+                                    <div class="clear"></div>
+
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="kaquanbox_ul_li_but on fl">
+                                <h2 class="kaquanbox_ul_li_but_h2">
+                                    已<br>
+                                    过<br>
+                                    期
+                                </h2>
+                            </div>
+                                {/if}
+
+
+                            <div class="clear"></div>
+                        </li>
+                        {/case}
+                        {case value="1"}
+
+                        <if condition="($vo.cancellation_coupons eq '1')">
+                            <li class="kaquanbox_ul_li fl">
+                                <div class="kaquanbox_ul_li_div fl">
+                                    <div class="kaquanbox_ul_li_div_img fl">
+                                        <img src="/template/mobile/static/images/kaquan_05.png">
+                                    </div>
+                                    <div class="kaquanbox_ul_li_div_text fl">
+                                        <h2 class="kaquanbox_ul_li_div_text_h2">1000元</h2>
+                                        <form action="" class="kaquanbox_ul_li_fx">
+                                            <input type="text" class="share-input"  value="http://www.youtube.com" id="copy-content"/>
+                                            <button class="copy-button on" type="button" > 分享 </button>
+                                            <div class="clear"></div>
+                                        </form>
+                                    </div>
+                                    <div class="kaquanbox_ul_li_div_tubiao"></div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="kaquanbox_ul_li_but on fl">
+                                    <h2 class="kaquanbox_ul_li_but_h2">
+                                        已<br>
+                                        核<br>
+                                        销
+                                    </h2>
+                                </div>
+                                <div class="clear"></div>
+                            </li>
+                            {/case}
+                            {/switch}
+                            {/volist}
+
+
+                            {volist name="activity_comp_result_champion" id="vo"}
+                            {switch name="vo.cancellation_coupons"}
+                            {case value="0"}
+                            <li class="kaquanbox_ul_li fl">
+                                <div class="kaquanbox_ul_li_img fl">
+                                    <img src="{$vo.coupon_img}">
+                                </div>
+                                <div class="kaquanbox_ul_li_but fl" onclick="activityCouponsG('{$vo.coupon_code}')">
+                                    <h2 class="kaquanbox_ul_li_but_h2">
+                                        核<br>
+                                        销
+                                    </h2>
+                                </div>
+                                <div class="clear"></div>
+                            </li>
+                            {/case}
+                            {case value="1"}
+
+                            <if condition="($vo.cancellation_coupons eq '1')">
+                                <li class="kaquanbox_ul_li fl">
+                                    <div class="kaquanbox_ul_li_img fl">
+                                        <img src="{$vo.coupon_img}">
+                                        <div class="kaquanbox_ul_li_div_tubiao"></div>
+                                    </div>
+                                    <div class="kaquanbox_ul_li_but on fl">
+                                        <h2 class="kaquanbox_ul_li_but_h2">
+                                            已<br>
+                                            核<br>
+                                            销
+                                        </h2>
+                                    </div>
+                                    <div class="clear"></div>
+                                </li>
+                                {/case}
+                                {/switch}
+                                {/volist}
+
+                    </ul>
+                </div>
+                <div class="jcbox_content_jies">
+                    <h2>卡券使用说明：</h2>
+                    <p>1、车主所获优惠券都可分享给朋友，但每张优惠券仅限使用一次。</p>
+                    <p>2、车主所获得的的优惠券不能叠加使用，且该优惠券不能与线下门店世界杯活动同时使用。</p>
+                    <p>3、车主持所拥有的优惠券至门店消费，需提前展示优惠券给门店，由门店点击核销后才能享受优惠。车主自行点击核销后，优惠券无效。可参加其他活动再次获取优惠券。</p>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<script>
+    function activityCoupons(code)
+    {
+
+        var data = {code:code};
+        $.ajax({
+            type : 'post',
+            url : '/mobile/Coupons/activityCoupons',
+            data : data,
+            dataType : 'json',
+            success : function(data){
+                if(data.status == 1){
+                    showErrorMsg(data.msg);
+                    window.location.reload();
+                    // window.location.href = data.url;
+
+                }else{
+                    showErrorMsg(data.msg);
+                    if (codeExist) {
+                        verify();
+                    } else {
+                        location.reload();
+                    }
+                }
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown) {
+                showErrorMsg('网络异常，请稍后重试');
+            }
+        })
+    }
+
+    function activityCouponsG(code)
+    {
+        var data = {code:code};
+        $.ajax({
+            type : 'post',
+            url : '/mobile/Coupons/activityCouponsG',
+            data : data,
+            dataType : 'json',
+            success : function(data){
+                if(data.status == 1){
+                    showErrorMsg(data.msg);
+                    window.location.reload();
+                    // window.location.href = data.url;
+
+                }else{
+                    showErrorMsg(data.msg);
+                    if (codeExist) {
+                        verify();
+                    } else {
+                        location.reload();
+                    }
+                }
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown) {
+                showErrorMsg('网络异常，请稍后重试');
+            }
+        })
+    }
+</script>
+
+
+
+
+<script src="__PUBLIC__/js/clipboard.min.js"></script>
+
+
+<script>
+
+    var clipboard = new ClipboardJS('.copy-button');
+
+
+
+
+
+    clipboard.on('success', function(e) {
+        $.ajax({
+            url:"/home/Coupons/shareCoupons",
+            data:{code:e.text},
+            type : 'post',
+            dataType : 'json',
+            success:function(res){
+
+                if(res.status==1){
+                    alert("优惠券链接已复制成功，快去粘贴分享吧~");
+
+                }else{
+                    alert(res.msg);
+                }
+
+            }
+        })
+
+    });
+
+    clipboard.on('error', function(e) {
+
+    });
+
+</script>

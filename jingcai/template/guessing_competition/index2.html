@@ -1,0 +1,65 @@
+{include file="public/header" title="竞猜胜负"  body=""/}
+
+<div class="jcbox">
+    <div class="jcbox_banner">
+        <img src="/public/images/nybanner.jpg" alt="竞猜活动">
+    </div>
+    <div class="jcbox_content">
+        <div class="jcbox_contentbox"  id="2">
+            <ul class="jcbox_content_ul fl">
+                <li class="jcbox_content_ul_li1">
+                    <a href="/home{$navigation[0]['url']}#2"><img src="/public/images/title11.png"></a>
+                </li>
+                <li class="jcbox_content_ul_li1">
+                    <a href="/home{$navigation[1]['url']}#2"><img src="/public/images/title1.png"></a>
+                </li>
+                <li class="jcbox_content_ul_li1">
+                    <a href="/home{$navigation[2]['url']}#2"><img src="/public/images/title2.png"></a>
+                </li>
+
+            </ul>
+            <div class="jcbox_content_box fr">
+                <img class="jc01_img" src="/public/images/jc1_01.png">
+            </div>
+            <div class="clear"></div>
+        </div>
+
+
+    </div>
+</div>
+<!--<div class="loginsingup-input">-->
+<!--<div style="height:800px;"></div>-->
+
+
+
+
+<!--</div>-->
+
+
+<script>
+    function submitverify(activity_settings_id,activity_team_id)
+    {
+        var data = {activity_settings_id:activity_settings_id,activity_team_id:activity_team_id};
+        $.ajax({
+            type : 'post',
+            url : '/mobile/GuessingCompetition/activityCompResult',
+            data : data,
+            dataType : 'json',
+            success : function(data){
+                if(data.status == 1){
+                    alert(data.msg);
+                    window.location.reload();
+                       // window.location.href = data.url;
+
+                }else{
+                    alert(data.msg);
+                    window.location.reload();
+                }
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown) {
+                alert('网络异常，请稍后重试');
+            }
+        })
+    }
+
+</script>

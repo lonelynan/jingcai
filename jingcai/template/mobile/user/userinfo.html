@@ -1,0 +1,216 @@
+{include file="public/header" title="我的信息" body="g4"/}
+
+<div class="floor my p setting">
+    <div class="content">
+        <div class="floor list7">
+            <div class="myorder he p">
+                <div class="content30">
+                    <div class="order">
+                        <div class="fl">
+                            <span>基础信息</span>
+                            <span class="bridh"></span>
+                        </div>
+                        <div class="fr">
+                            <!--<a href="">-->
+                            <div class="hendicon">
+                                <span></span>
+                                <form id="head_pic" method="post" enctype="multipart/form-data">
+                                    <label class="file" style="cursor:pointer;">
+                                        <div class="around" id="fileList">
+                                            <img src="{$user.head_pic|default='__STATIC__/images/user68.jpg'}"/>
+                                            <input type="file" accept="image/*" name="head_pic"
+                                                   onchange="handleFiles(this)" style="display:none">
+                                        </div>
+                                    </label>
+                                </form>
+                            </div>
+                            <!--</a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="myorder p">
+                <div class="content30">
+                    <a href="{:url('Mobile/User/userinfo',array('action'=>'nickname'))}">
+                        <div class="order">
+                            <div class="fl">
+                                <span>用户名:</span>
+                            </div>
+                            <div class="fr">
+                                <span>{$user.nickname}</span>
+                                <i class="Mright"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="myorder p">
+                <div class="content30">
+                    <a href="{:url('Mobile/User/setMobile')}">
+                        <div class="order">
+                            <div class="fl">
+                                <span>手机:</span>
+                            </div>
+                            <div class="fr">
+                                <span>{$user.mobile}</span>
+                                <i class="Mright"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="myorder p ">
+                <div class="content30">
+                    <a href="{:url('Mobile/User/userinfo',array('action'=>'email'))}">
+                        <div class="order">
+                            <div class="fl">
+                                <span>邮箱:</span>
+                            </div>
+                            <div class="fr">
+                                <span>{$user.email}</span>
+                                <i class="Mright"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="myorder p">
+                <div class="content30">
+                    <a href="{:url('Mobile/User/address')}">
+                        <div class="order">
+                            <div class="fl">
+                                <span>联系地址:</span>
+                            </div>
+                            <div class="fr">
+                                <i class="Mright"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <form action="{:url('Mobile/User/userinfo')}" method="post" onsubmit="return submitverify(this)">
+                <div class="myorder p">
+                    <div class="content30">
+                        <div class="order">
+                            <div class="fl">
+                                <span>公司:</span>
+                            </div>
+                            <div class="lsu bk">
+                                <div class="loginsingup-input">
+                                    <input type="text" name="company_name" id="company_name"
+                                           value="{$user.company_name}" style="text-align:right;width:100%;margin-left:60px;"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="myorder p">
+                    <div class="content30">
+                        <div class="order">
+                            <div class="fl">
+                                <span>职位:</span>
+                            </div>
+                            <div class="lsu bk">
+                                <div class="loginsingup-input">
+                                    <input type="text" name="position" id="position" value="{$user.position}" style="text-align:right;width:100%;margin-left:60px;"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="myorder p">
+                    <div class="content30">
+                        <div class="order">
+                            <div class="fl">
+                                <span>行业:</span>
+                            </div>
+                            <div class="lsu bk">
+                                <div class="loginsingup-input">
+                                    <input type="text" name="industry" id="industry" value="{$user.industry}" style="text-align:right;width:100%;margin-left:60px;"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="loginsingup-input">
+                    <div class="lsu-submit">
+                        <input type="submit" name="" id="" value="保存"/>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="close">
+            <!--<a href="{:url('User/logout')}" id="logout">安全退出</a>-->
+            <a id="asubmit" style="display:none;" href="javascript:;"
+               onclick="javascript:$('#head_pic').submit();">保存头像</a>
+        </div>
+    </div>
+</div>
+<script>
+    //显示上传照片
+    window.URL = window.URL || window.webkitURL;
+
+    function handleFiles(obj) {
+        fileList = document.getElementById("fileList");
+        var files = obj.files;
+        img = new Image();
+        if (window.URL) {
+            img.src = window.URL.createObjectURL(files[0]); //创建一个object URL，并不是你的本地路径
+            img.width = 60;
+            img.height = 60;
+            img.onload = function (e) {
+                window.URL.revokeObjectURL(this.src); //图片加载后，释放object URL
+            }
+            if (fileList.firstElementChild) {
+                fileList.removeChild(fileList.firstElementChild);
+            }
+            $('#fileList').find('img').remove();
+            fileList.appendChild(img);
+        } else if (window.FileReader) {
+            //opera不支持createObjectURL/revokeObjectURL方法。我们用FileReader对象来处理
+            var reader = new FileReader();
+            reader.readAsDataURL(files[0]);
+            reader.onload = function (e) {
+                img.src = this.result;
+                img.width = 60;
+                img.height = 60;
+                $('#fileList').find('img').remove();
+                fileList.appendChild(img);
+            }
+        } else {
+            //ie
+            obj.select();
+            obj.blur();
+            var nfile = document.selection.createRange().text;
+            document.selection.empty();
+            img.src = nfile;
+            img.width = 60;
+            img.height = 60;
+            img.onload = function () {
+
+            }
+            $('#fileList').find('img').remove();
+            fileList.appendChild(img);
+        }
+        $('#asubmit').show();
+        $('#logout').hide();
+        $('#head_pic').submit();
+    }
+
+    $(function () {
+        var ua = window.navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+            $('#logout').hide();
+        }
+    });
+    //提交前验证表单
+    function submitverify(obj){
+
+        $(obj).onsubmit();
+    }
+</script>
+</body>
+</html>

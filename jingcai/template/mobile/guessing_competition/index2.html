@@ -1,0 +1,66 @@
+{include file="public/header" title="竞猜胜负"  body=""/}
+
+<div class="jcbox">
+    <div class="jcbox_banner">
+        <img src="/template/mobile/static/images/jc_01.jpg" alt="竞猜活动">
+    </div>
+    <div class="jcbox_content">
+        <ul class="jcbox_content_ul">
+            <li class="indexbox_ul_li on1">
+                <a class="indexbox_ul_li_a" href="/mobile{$navigation[0]['url']}">{$navigation[0]['name']}</a>
+            </li>
+            <li class="indexbox_ul_li on2">
+                <a class="indexbox_ul_li_a" href="/mobile{$navigation[1]['url']}">{$navigation[1]['name']}</a>
+            </li>
+            <li class="indexbox_ul_li on3">
+                <a class="indexbox_ul_li_a" href="/mobile{$navigation[2]['url']}">{$navigation[2]['name']}</a>
+            </li>
+        </ul>
+        <div class="jcbox_content_xian">
+            <img src="/template/mobile/static/images/jc_01.png" alt="">
+        </div>
+
+        <img style="width: 90%;margin: 12% auto;" src="/template/mobile/static/images/jc001.png" alt="">
+
+    </div>
+</div>
+<!--<div class="loginsingup-input">-->
+<!--<div style="height:800px;"></div>-->
+
+
+
+
+<!--</div>-->
+
+
+<script>
+    function submitverify(activity_settings_id,activity_team_id)
+    {
+        var data = {activity_settings_id:activity_settings_id,activity_team_id:activity_team_id};
+        $.ajax({
+            type : 'post',
+            url : '/mobile/GuessingCompetition/activityCompResult',
+            data : data,
+            dataType : 'json',
+            success : function(data){
+                if(data.status == 1){
+                    showErrorMsg(data.msg);
+                    window.location.reload();
+                       // window.location.href = data.url;
+
+                }else{
+                    showErrorMsg(data.msg);
+                    if (codeExist) {
+                        verify();
+                    } else {
+                        location.reload();
+                    }
+                }
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown) {
+                showErrorMsg('网络异常，请稍后重试');
+            }
+        })
+    }
+
+</script>
